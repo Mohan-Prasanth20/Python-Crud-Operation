@@ -1,0 +1,99 @@
+<html>
+   <head>
+      <title>Update page</title>
+      <style>
+         .form-l{
+         border: 1px;
+         padding: 10px 36px 40px 50px;
+         }
+         h1{
+         color: blue;
+         margin-left: 46px;
+         }
+         .submit{
+         background-color: #4CAF50; 
+         border: none;
+         color: white;
+         padding: 10px 102px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         cursor: pointer;
+         }
+         a:link, a:visited {
+         background-color: #f44336;
+         color: white;
+         padding: 14px 25px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         }
+         a:hover, a:active {
+         background-color: red;
+         }
+      </style>
+   </head>
+   <body>
+      <h1>Update User Details </h1>
+      <form action = "/update" method = "POST" class="form-l">
+         <label>Enter the Name:</label>
+         <input type="text" name="name" value="{{datas[1]}}" onkeypress="return (event.charCode > 64 && 
+            event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"> <br> <br>
+         <label>Enter the Phone:</label>
+         <input type="text" name="phno" value="{{datas[2]}}" pattern="[1-9]{1}[0-9]{9}" onkeypress='return event.charCode >= 48 && event.charCode <= 57'><br> <br>
+         <label>Enter the Address:</label>
+         <input  type="text" name="address" value="{{datas[3]}}"><br><br>
+         <label>Date of Birth:</label>
+         <input type="date" name="bday" value="{{datas[4]}}"><br><br>
+         {% if datas[5]=="Male"%}
+         <label>Gender :</label> 
+         <input type="radio"name="gender" checked="true" value="Male">Male
+         <input type="radio"name="gender" value="Female">Female
+         {% elif datas[5]=="Female" %}
+         <label>Gender :</label> 
+         <input type="radio"name="gender"  value="Male">Male
+         <input type="radio"name="gender" value="Female" checked="true">Female
+         {% endif %} <br/><br/>
+
+            <label>Qualification :</label> 
+            <select name="qualification">
+               {% if datas[6]=="MCA" %}
+               <option value="MCA" selected>MCA</option>
+               <option value="BCA">BCA</option>
+               <option value="MBA">MBA</option>
+               <option value="MBBS">MBBS</option>
+               {% elif datas[6]=="BCA" %}
+               <option value="MCA" >MCA</option>
+               <option value="BCA" selected>BCA</option>
+               <option value="MBA">MBA</option>
+               <option value="MBBS">MBBS</option>
+               {% elif datas[6]=="MBA" %}
+               <option value="MCA">MCA</option>
+               <option value="BCA">BCA</option>
+               <option value="MBA" selected>MBA</option>
+               <option value="MBBS">MBBS</option>
+               {% elif datas[6]=="MBBS" %}
+               <option value="MCA">MCA</option>
+               <option value="BCA">BCA</option>
+               <option value="MBA">MBA</option>
+               <option value="MBBS" selected>MBBS</option>
+               {% endif %}
+            </select>
+         </p>
+
+         <label>Extraqualification:</label>
+         {% if datas[7]=="YES" %}
+         <input type="checkbox"name="extraqualifi"value="YES" checked="true">YES
+         <input type="checkbox"name="extraqualifi"value="NO">NO</p></p>
+         {% else %}
+         <input type="checkbox"name="extraqualifi"value="YES">YES
+         <input type="checkbox"name="extraqualifi"value="NO"checked="true">NO</p></p>
+         {% endif %}
+         
+         <input name="id" value="{{datas[0]}}" type="hidden">
+         <input type='submit' value='Update' class="submit"> </br></br>
+         <a href="http://127.0.0.1:5000/home">Back To Home</a>
+      </form>
+   </body>
+</html>

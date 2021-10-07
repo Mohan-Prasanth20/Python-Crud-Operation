@@ -1,0 +1,62 @@
+<html>
+   <head>
+      <title>my work</title>
+      <style>
+         h2{
+         color: blue;
+         font-size: 25px;
+         }
+         a:link, a:visited {
+         background-color: #f44336;
+         color: white;
+         padding: 14px 25px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         }
+         a:hover, a:active {
+         background-color: red;
+         }
+         th{
+         font-size: 18px;
+         color: darkslateblue;
+         }
+         td{
+         font-size: 17px;
+         text-transform: uppercase;
+         }
+      </style>
+   </head>
+   <body>
+      <h2> Display All The Records </h2>
+      <h3><a href="{{url_for('addusers')}}">Add Users</a></h3>
+      <table border="1px">
+         <tr style="background-color:limegreen;">
+            <th>ID</th>
+            <th>NAME</th>
+            <th>PHNO NUMBER</th>
+            <th>ADDRESS</th>
+            <th>DATE OF BIRTH</th>
+            <th>GENDER</th>
+            <th>QUALIFICATION</th>
+            <th>EXTRAQUALIFICATION</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
+         </tr>
+         {% for data in datas %}
+         <tr style="background-color: rgb(32, 235, 235);color:black;">
+            <td>{{data[0]}}</td>
+            <td>{{data[1]}}</td>
+            <td>{{data[2]}}</td>
+            <td>{{data[3]}}</td>
+            <td>{{data[4]}}</td>
+            <td>{{data[5]}}</td>
+            <td>{{data[6]}}</td>
+            <td>{{data[7]}}</td>
+            <td><a href="{{url_for('editUsers',id=data[0])}}">Edit</a></td>
+            <td><a onclick="return confirm('Are you sure to delete?');"href="{{url_for('deleteUser',id=data[0])}}">Delete</a></td>
+         </tr>
+         {% endfor %}
+      </table>
+   </body>
+</html>
